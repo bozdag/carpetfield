@@ -1,16 +1,14 @@
 package com.carpetfield.server.service.impl;
 
-import com.carpetfield.server.domain.auth.User;
-import com.carpetfield.server.service.UserRepository;
-import com.carpetfield.server.service.UserService;
-import com.carpetfield.server.web.UserCreateForm;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
-
 import java.util.Collection;
 import java.util.Optional;
+
+import com.carpetfield.server.domain.auth.User;
+import com.carpetfield.server.repo.UserRepository;
+import com.carpetfield.server.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by selcukb on 09.03.2017.
@@ -18,13 +16,8 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService
 {
-    private final UserRepository userRepository;
-
     @Autowired
-    public UserServiceImpl(UserRepository userRepository)
-    {
-        this.userRepository = userRepository;
-    }
+    private UserRepository userRepository;
 
     @Override
     public Optional<User> getUserById(long id)
@@ -45,12 +38,8 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
-    public User create(UserCreateForm form)
+    public User create(User user)
     {
-        User user = new User();
-        user.setEmail( form.getEmail() );
-        user.setPasswordHash( new BCryptPasswordEncoder().encode(form.getPassword()));
-        user.setRole(form.getRole());
         return userRepository.save(user);
     }
 }

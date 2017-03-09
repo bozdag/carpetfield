@@ -1,9 +1,10 @@
-package com.carpetfield.server.service;
+package com.carpetfield.server.repo;
+
+import java.util.Optional;
 
 import com.carpetfield.server.domain.auth.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.Optional;
+import org.springframework.stereotype.Repository;
 
 /**
  * Created by selcukb on 09.03.2017.
