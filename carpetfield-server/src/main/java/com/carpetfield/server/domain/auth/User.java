@@ -25,6 +25,13 @@ public class User
     public User()
     {}
 
+    public User(String userEmail, String userPasswordHashed, Role userRole)
+    {
+        email = userEmail;
+        passwordHash = userPasswordHashed;
+        role =  userRole;
+    }
+
     public Long getId()
     {
         return id;
