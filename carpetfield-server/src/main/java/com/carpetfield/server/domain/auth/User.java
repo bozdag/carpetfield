@@ -1,12 +1,16 @@
 package com.carpetfield.server.domain.auth;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * Created by selcukb on 09.03.2017.
  */
 @Entity
-@Table(name = "CF_USER")
 public class User
 {
     @Id
@@ -16,7 +20,7 @@ public class User
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column(name = "password_hash", nullable = false)
     private String passwordHash;
 
     @Enumerated(EnumType.STRING)

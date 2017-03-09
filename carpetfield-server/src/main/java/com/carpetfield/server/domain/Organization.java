@@ -1,14 +1,20 @@
 package com.carpetfield.server.domain;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.StringJoiner;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import com.carpetfield.server.domain.auth.User;
 
 /**
  * Created by selcukb on 08.03.2017.
  */
+@Entity
 public class Organization implements Serializable
 {
 
@@ -60,6 +66,10 @@ public class Organization implements Serializable
     public void setDescription(String description)
     {
         this.description = description;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override
