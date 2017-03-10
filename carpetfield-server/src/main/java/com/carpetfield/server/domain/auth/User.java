@@ -31,12 +31,11 @@ public class User
     private Collection<OrganizationMembership> memberships;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    private Collection<Game> userGames;
+    private Collection<Game> gameCollection;
 
     public User()
     {
         this.memberships = new ArrayList<>();
-
     }
 
     public User(String userEmail, String userPasswordHashed, Role userRole)
@@ -87,5 +86,13 @@ public class User
 
     public void setMemberships(Collection<OrganizationMembership> memberships) {
         this.memberships = memberships;
+    }
+
+    public Collection<Game> getGameCollection() {
+        return gameCollection;
+    }
+
+    public void setGameCollection(Collection<Game> gameCollection) {
+        this.gameCollection = gameCollection;
     }
 }

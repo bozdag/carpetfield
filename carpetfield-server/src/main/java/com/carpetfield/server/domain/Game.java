@@ -1,18 +1,19 @@
 package com.carpetfield.server.domain;
 
 import com.carpetfield.server.domain.auth.User;
-
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.StringJoiner;
 
 /**
  * Created by selcukb on 08.03.2017.
  */
 @Entity
-public class Game
-{
+public class Game implements Serializable{
+
     @Id
     @GeneratedValue
     private Long id;
@@ -36,25 +37,25 @@ public class Game
     @JoinColumn(name="ORG_ID", nullable=false)
     private Organization organization;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name="Games_Users")
-    private Collection<User> gameUsers;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name="Games_Users", joinColumns=@JoinColumn(name="game_id", referencedColumnName="id"), inverseJoinColumns=@JoinColumn(name="user_id", referencedColumnName="id"))
+    private Collection<User> userCollection;
 
     public Game() {
-        gameUsers = new ArrayList<>();
+        userCollection = new ArrayList<>();
         timeOfCreation = new Date();
     }
 
     public Game(String gameName) {
         name = gameName;
-        gameUsers = new ArrayList<>();
+        userCollection = new ArrayList<>();
         timeOfCreation = new Date();
     }
 
     public Game(String gameName, String gameDescription) {
         name = gameName;
         description = gameDescription;
-        gameUsers = new ArrayList<>();
+        userCollection = new ArrayList<>();
         timeOfCreation = new Date();
     }
 
@@ -62,7 +63,7 @@ public class Game
         name = gameName;
         description = gameDescription;
         address = gameAddress;
-        gameUsers = new ArrayList<>();
+        userCollection = new ArrayList<>();
         timeOfCreation = new Date();
     }
 
@@ -71,7 +72,7 @@ public class Game
         description = gameDescription;
         address = gameAddress;
         timeOfStart = gameTimeOfStart;
-        gameUsers = new ArrayList<>();
+        userCollection = new ArrayList<>();
         timeOfCreation = new Date();
     }
 
@@ -119,11 +120,20 @@ public class Game
         return organization;
     }
 
-    public Collection<User> getGameUsers() {
-        return gameUsers;
+    public Collection<User> getUserCollection() {
+        return userCollection;
     }
 
-    public void setGameUsers(Collection<User> gameUsers) {
-        this.gameUsers = gameUsers;
+    public void setUserCollection(Collection<User> users) {
+        this.userCollection = users;
+    }
+
+    @Override
+    public String toString() {
+        StringJoiner sj = new StringJoiner(":");
+        sj.add(name);
+        sj.add(description);
+        sj.add(address);
+        return sj.toString();
     }
 }

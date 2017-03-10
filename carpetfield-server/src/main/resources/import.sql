@@ -25,3 +25,13 @@ INSERT INTO game (name, description, address, time_of_creation, time_of_start, O
 INSERT INTO game (name, description, address, time_of_creation, time_of_start, ORG_ID) VALUES ('oyun2', 'oyun 2 açıklama', 'oyun 2 adres', '2017-03-10 00:00:00', '2017-03-13 20:00:00', 2);
 INSERT INTO game (name, description, address, time_of_creation, time_of_start, ORG_ID) VALUES ('oyun3', 'oyun 3 açıklama', 'oyun 3 adres', '2017-03-10 00:00:00', '2017-03-14 20:00:00', 1);
 INSERT INTO game (name, description, address, time_of_creation, time_of_start, ORG_ID) VALUES ('oyun4', 'oyun 4 açıklama', 'oyun 4 adres', '2017-03-10 00:00:00', '2017-03-15 20:00:00', 2);
+
+INSERT Into games_users (user_id, game_id) VALUES (1,1);
+INSERT Into games_users (user_id, game_id) VALUES (2,1);
+INSERT Into games_users (user_id, game_id) VALUES (3,1);
+INSERT Into games_users (user_id, game_id) VALUES (4,1);
+
+INSERT INTO invitation (context, invitation_time, GAME_ID, USER_ID) VALUES ('davetiye1', '2017-03-10 17:00:00', 1, 1);
+INSERT INTO invitation (context, invitation_time, GAME_ID, USER_ID) VALUES ('davetiye2', '2017-03-10 17:00:00', 2, 2);
+INSERT INTO invitation (context, invitation_time, GAME_ID, USER_ID) VALUES ('davetiye3', '2017-03-10 17:00:00', 3, 3);
+INSERT INTO invitation (context, invitation_time, GAME_ID, USER_ID) VALUES ('davetiye4', '2017-03-10 17:00:00', 4, 4);

@@ -27,7 +27,9 @@ public class GameServiceImpl implements GameService
     @Override
     public Collection<Game> getGamesByOrganizationId(long orgId)
     {
-        return gameRepository.findGamesByOrganizationId(orgId);
+        //jpa dsl query konusuna bakılacak
+        //return gameRepository.findGamesByOrganizationId(orgId);
+        return null;
     }
 
     @Override

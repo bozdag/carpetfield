@@ -18,21 +18,21 @@ public class GameController {
     @Autowired
     private GameService gameService;
 
-    /* GET /users */
+    /* GET /games */
     @RequestMapping(method = RequestMethod.GET)
     public Collection<Game> list()
     {
         return gameService.getAllGames();
     }
 
-    /* GET /users/1 */
+    /* GET /games/1 */
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public Game getGame(@PathVariable Long id)
     {
         return gameService.getGameById(id).orElseThrow( () -> new NoSuchElementException("Game not found"));
     }
 
-    /* POST /users {user data} */
+    /* POST /games {game data} */
     @RequestMapping(method = RequestMethod.POST)
     public Game createGame(@RequestBody @Valid final Game game)
     {
@@ -48,7 +48,7 @@ public class GameController {
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     public Game update(@PathVariable Long id, @RequestBody @Valid final Game game)
     {
-        Game gameToUpdate = gameService.getGameById(id).orElseThrow( () -> new NoSuchElementException("User not found"));
+        Game gameToUpdate = gameService.getGameById(id).orElseThrow( () -> new NoSuchElementException("Game not found"));
         // MARK: <Alternative> BeanUtils.copyProperties
         gameToUpdate.setName( game.getName() );
         gameToUpdate.setDescription( game.getDescription() );
