@@ -6,6 +6,7 @@ import java.util.Collection;
 import javax.persistence.*;
 
 import com.carpetfield.server.domain.Game;
+import com.carpetfield.server.domain.Invitation;
 import com.carpetfield.server.domain.OrganizationMembership;
 
 /**
@@ -32,6 +33,9 @@ public class User
 
     @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Game> gameCollection;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private Collection<Invitation> invitationCollection;
 
     public User()
     {

@@ -37,9 +37,12 @@ public class Game implements Serializable{
     @JoinColumn(name="ORG_ID", nullable=false)
     private Organization organization;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany()
     @JoinTable(name="Games_Users", joinColumns=@JoinColumn(name="game_id", referencedColumnName="id"), inverseJoinColumns=@JoinColumn(name="user_id", referencedColumnName="id"))
     private Collection<User> userCollection;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private Collection<Invitation> invitationCollection;
 
     public Game() {
         userCollection = new ArrayList<>();
@@ -126,6 +129,14 @@ public class Game implements Serializable{
 
     public void setUserCollection(Collection<User> users) {
         this.userCollection = users;
+    }
+
+    public Collection<Invitation> getInvitationCollection() {
+        return invitationCollection;
+    }
+
+    public void setInvitationCollection(Collection<Invitation> invitationCollection) {
+        this.invitationCollection = invitationCollection;
     }
 
     @Override

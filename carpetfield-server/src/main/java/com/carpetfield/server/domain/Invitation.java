@@ -1,5 +1,6 @@
 package com.carpetfield.server.domain;
 
+import javax.jws.Oneway;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -28,6 +29,10 @@ public class Invitation implements Serializable {
     @ManyToOne()
     @JoinColumn(name="USER_ID", nullable=false)
     private User user;
+
+    @OneToOne()
+    @JoinColumn(name="RESPONSE_TYPE_ID", nullable=false)
+    private InvitationResponseType response;
 
     public Invitation(){
         timeOfInvitation = new Date();
@@ -58,5 +63,13 @@ public class Invitation implements Serializable {
 
     public Game getGame() {
         return game;
+    }
+
+    public InvitationResponseType getResponse() {
+        return response;
+    }
+
+    public void setResponse(InvitationResponseType response) {
+        this.response = response;
     }
 }

@@ -31,7 +31,12 @@ INSERT Into games_users (user_id, game_id) VALUES (2,1);
 INSERT Into games_users (user_id, game_id) VALUES (3,1);
 INSERT Into games_users (user_id, game_id) VALUES (4,1);
 
-INSERT INTO invitation (context, invitation_time, GAME_ID, USER_ID) VALUES ('davetiye1', '2017-03-10 17:00:00', 1, 1);
-INSERT INTO invitation (context, invitation_time, GAME_ID, USER_ID) VALUES ('davetiye2', '2017-03-10 17:00:00', 2, 2);
-INSERT INTO invitation (context, invitation_time, GAME_ID, USER_ID) VALUES ('davetiye3', '2017-03-10 17:00:00', 3, 3);
-INSERT INTO invitation (context, invitation_time, GAME_ID, USER_ID) VALUES ('davetiye4', '2017-03-10 17:00:00', 4, 4);
+INSERT INTO invitation_response_type (id, status) VALUES (1, 'Not Responded');
+INSERT INTO invitation_response_type (id, status) VALUES (2, 'Accepted');
+INSERT INTO invitation_response_type (id, status) VALUES (3, 'Rejected');
+INSERT INTO invitation_response_type (id, status) VALUES (4, 'Maybe Attend');
+
+INSERT INTO invitation (context, invitation_time, GAME_ID, USER_ID, RESPONSE_TYPE_ID) VALUES ('davetiye1', '2017-03-10 17:00:00', 1, 1, 1);
+INSERT INTO invitation (context, invitation_time, GAME_ID, USER_ID, RESPONSE_TYPE_ID) VALUES ('davetiye2', '2017-03-10 17:00:00', 2, 2, 1);
+INSERT INTO invitation (context, invitation_time, GAME_ID, USER_ID, RESPONSE_TYPE_ID) VALUES ('davetiye3', '2017-03-10 17:00:00', 3, 3, 1);
+INSERT INTO invitation (context, invitation_time, GAME_ID, USER_ID, RESPONSE_TYPE_ID) VALUES ('davetiye4', '2017-03-10 17:00:00', 4, 4, 1);
