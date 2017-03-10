@@ -38,6 +38,11 @@
             <artifactId>hsqldb</artifactId>
         </dependency>
 
+        <!-- MySQL Dependency -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
         <!-- Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
