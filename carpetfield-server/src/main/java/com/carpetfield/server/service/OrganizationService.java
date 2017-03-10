@@ -1,6 +1,6 @@
 package com.carpetfield.server.service;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import com.carpetfield.server.domain.Organization;
@@ -10,7 +10,12 @@ import com.carpetfield.server.domain.Organization;
  */
 
 public interface OrganizationService {
-	Collection<Organization> findAll();
+
+	List<Organization> findAll();
 
 	Optional<Organization> findOne(Long id);
+
+	Optional<Organization> findByName(String organizationName);
+
+	Organization saveAndFlush(Organization organization);
 }

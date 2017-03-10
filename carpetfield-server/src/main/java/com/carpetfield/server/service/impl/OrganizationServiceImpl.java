@@ -1,6 +1,6 @@
 package com.carpetfield.server.service.impl;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import com.carpetfield.server.domain.Organization;
@@ -19,14 +19,23 @@ public class OrganizationServiceImpl implements OrganizationService {
 	private OrganizationRepository organizationRepository;
 
 	@Override
-	public Collection<Organization> findAll(){
+	public List<Organization> findAll(){
 		return organizationRepository.findAll();
 	}
 
 	@Override
 	public Optional<Organization> findOne(Long id) {
 		return Optional.ofNullable(organizationRepository.findOne(id));
+	}
 
+	@Override
+	public Optional<Organization> findByName(String organizationName) {
+		return organizationRepository.findByNameIgnoreCase(organizationName);
+	}
+
+	@Override
+	public Organization saveAndFlush(Organization organization) {
+		return organizationRepository.saveAndFlush(organization);
 	}
 
 }
