@@ -1,7 +1,11 @@
 package com.carpetfield.server.domain;
 
+import com.carpetfield.server.domain.auth.User;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Created by selcukb on 08.03.2017.
@@ -28,27 +32,29 @@ public class Game
     @Column(name = "time_of_start", nullable = false)
     private Date timeOfStart;
 
-    @ManyToOne
+    @ManyToOne()
+    @JoinColumn(name="ORG_ID", nullable=false)
     private Organization organization;
 
-//    @OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
-//    private Collection<OrganizationMembership> members;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name="Games_Users")
+    private Collection<User> gameUsers;
 
     public Game() {
-//        members = new ArrayList<>();
+        gameUsers = new ArrayList<>();
         timeOfCreation = new Date();
     }
 
     public Game(String gameName) {
         name = gameName;
-//        members = new ArrayList<>();
+        gameUsers = new ArrayList<>();
         timeOfCreation = new Date();
     }
 
     public Game(String gameName, String gameDescription) {
         name = gameName;
         description = gameDescription;
-//        members = new ArrayList<>();
+        gameUsers = new ArrayList<>();
         timeOfCreation = new Date();
     }
 
@@ -56,7 +62,7 @@ public class Game
         name = gameName;
         description = gameDescription;
         address = gameAddress;
-//        members = new ArrayList<>();
+        gameUsers = new ArrayList<>();
         timeOfCreation = new Date();
     }
 
@@ -65,7 +71,7 @@ public class Game
         description = gameDescription;
         address = gameAddress;
         timeOfStart = gameTimeOfStart;
-//        members = new ArrayList<>();
+        gameUsers = new ArrayList<>();
         timeOfCreation = new Date();
     }
 
@@ -113,11 +119,11 @@ public class Game
         return organization;
     }
 
-//    public Collection<OrganizationMembership> getMembers() {
-//        return members;
-//    }
+    public Collection<User> getGameUsers() {
+        return gameUsers;
+    }
 
-//    public void setMembers(Collection<OrganizationMembership> members) {
-//        this.members = members;
-//    }
+    public void setGameUsers(Collection<User> gameUsers) {
+        this.gameUsers = gameUsers;
+    }
 }
