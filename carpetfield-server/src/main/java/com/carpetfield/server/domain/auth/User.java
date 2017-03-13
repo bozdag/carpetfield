@@ -8,6 +8,8 @@ import javax.persistence.*;
 import com.carpetfield.server.domain.Game;
 import com.carpetfield.server.domain.Invitation;
 import com.carpetfield.server.domain.OrganizationMembership;
+import com.carpetfield.server.domain.Team;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /**
  * Created by selcukb on 09.03.2017.
@@ -31,8 +33,13 @@ public class User
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Collection<OrganizationMembership> memberships;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @JsonBackReference
+    @ManyToMany(mappedBy = "userCollection", fetch = FetchType.LAZY)
     private Collection<Game> gameCollection;
+
+    @JsonBackReference
+    @ManyToMany(mappedBy = "userCollection", fetch = FetchType.LAZY)
+    private Collection<Team> teamCollection;
 
     @OneToMany(fetch = FetchType.LAZY)
     private Collection<Invitation> invitationCollection;
@@ -98,5 +105,13 @@ public class User
 
     public void setGameCollection(Collection<Game> gameCollection) {
         this.gameCollection = gameCollection;
+    }
+
+    public Collection<Team> getTeamCollection() {
+        return teamCollection;
+    }
+
+    public void setTeamCollection(Collection<Team> teamCollection) {
+        this.teamCollection = teamCollection;
     }
 }

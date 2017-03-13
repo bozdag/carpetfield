@@ -1,5 +1,7 @@
 package com.carpetfield.server.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,6 +29,10 @@ public class Organization implements Serializable {
 	@Column(nullable = false) private String description;
 
 	@OneToMany(mappedBy = "organization", fetch = FetchType.LAZY) private Collection<OrganizationMembership> members;
+
+	@JsonBackReference
+	@OneToMany(mappedBy = "organization", fetch = FetchType.LAZY)
+	private Collection<Game> organizationGames;
 
 	public Organization() {
 		members = new ArrayList<>();
@@ -71,6 +77,14 @@ public class Organization implements Serializable {
 
 	public void setMembers(Collection<OrganizationMembership> members) {
 		this.members = members;
+	}
+
+	public Collection<Game> getOrganizationGames() {
+		return organizationGames;
+	}
+
+	public void setOrganizationGames(Collection<Game> organizationGames) {
+		this.organizationGames = organizationGames;
 	}
 
 	@Override

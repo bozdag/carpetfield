@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.StringJoiner;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 /**
  * Created by selcukb on 08.03.2017.
  */
@@ -33,16 +36,22 @@ public class Game implements Serializable{
     @Column(name = "time_of_start", nullable = false)
     private Date timeOfStart;
 
-    @ManyToOne()
+    @JsonManagedReference
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="ORG_ID", nullable=false)
     private Organization organization;
 
-    @ManyToMany()
-    @JoinTable(name="Games_Users", joinColumns=@JoinColumn(name="game_id", referencedColumnName="id"), inverseJoinColumns=@JoinColumn(name="user_id", referencedColumnName="id"))
+    @JsonManagedReference
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name="games_users", joinColumns=@JoinColumn(name="game_id", referencedColumnName="id"), inverseJoinColumns=@JoinColumn(name="user_id", referencedColumnName="id"))
     private Collection<User> userCollection;
 
     @OneToMany(fetch = FetchType.LAZY)
     private Collection<Invitation> invitationCollection;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
+    private Collection<Team> gameTeams;
 
     public Game() {
         userCollection = new ArrayList<>();
@@ -137,6 +146,14 @@ public class Game implements Serializable{
 
     public void setInvitationCollection(Collection<Invitation> invitationCollection) {
         this.invitationCollection = invitationCollection;
+    }
+
+    public Collection<Team> getGameTeams() {
+        return gameTeams;
+    }
+
+    public void setGameTeams(Collection<Team> gameTeams) {
+        this.gameTeams = gameTeams;
     }
 
     @Override

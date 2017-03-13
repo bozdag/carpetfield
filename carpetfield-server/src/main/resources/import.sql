@@ -31,6 +31,11 @@ INSERT Into games_users (user_id, game_id) VALUES (2,1);
 INSERT Into games_users (user_id, game_id) VALUES (3,1);
 INSERT Into games_users (user_id, game_id) VALUES (4,1);
 
+INSERT Into games_users (user_id, game_id) VALUES (1,3);
+INSERT Into games_users (user_id, game_id) VALUES (2,2);
+INSERT Into games_users (user_id, game_id) VALUES (3,3);
+INSERT Into games_users (user_id, game_id) VALUES (4,4);
+
 INSERT INTO invitation_response_type (id, status) VALUES (1, 'Not Responded');
 INSERT INTO invitation_response_type (id, status) VALUES (2, 'Accepted');
 INSERT INTO invitation_response_type (id, status) VALUES (3, 'Rejected');
@@ -40,3 +45,13 @@ INSERT INTO invitation (context, invitation_time, GAME_ID, USER_ID, RESPONSE_TYP
 INSERT INTO invitation (context, invitation_time, GAME_ID, USER_ID, RESPONSE_TYPE_ID) VALUES ('davetiye2', '2017-03-10 17:00:00', 2, 2, 1);
 INSERT INTO invitation (context, invitation_time, GAME_ID, USER_ID, RESPONSE_TYPE_ID) VALUES ('davetiye3', '2017-03-10 17:00:00', 3, 3, 1);
 INSERT INTO invitation (context, invitation_time, GAME_ID, USER_ID, RESPONSE_TYPE_ID) VALUES ('davetiye4', '2017-03-10 17:00:00', 4, 4, 1);
+
+INSERT INTO team (name, description, GAME_ID) VALUES ('takım adı 1', 'takım açıklama 1', 1);
+INSERT INTO team (name, description, GAME_ID) VALUES ('takım adı 2', 'takım açıklama 2', 1);
+INSERT INTO team (name, description, GAME_ID) VALUES ('takım adı 3', 'takım açıklama 3', 3);
+INSERT INTO team (name, description, GAME_ID) VALUES ('takım adı 4', 'takım açıklama 4', 4);
+
+INSERT Into teams_users (user_id, team_id) VALUES (1,1);
+INSERT Into teams_users (user_id, team_id) VALUES (2,2);
+INSERT Into teams_users (user_id, team_id) VALUES (3,3);
+INSERT Into teams_users (user_id, team_id) VALUES (4,4);
