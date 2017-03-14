@@ -50,7 +50,8 @@ public class OrganizationMembership {
 	@Column(name="START_DATE", updatable=false)
 	private Date startDate;
 
-
+	public OrganizationMembership()
+	{}
 
 	public Organization getOrganization() {
 		return organization;

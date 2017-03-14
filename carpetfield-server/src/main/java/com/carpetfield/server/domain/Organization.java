@@ -32,7 +32,8 @@ public class Organization implements Serializable {
 
 	@Column(nullable = false) private String description;
 
-	@OneToMany(mappedBy = "organization", fetch = FetchType.LAZY) private Collection<OrganizationMembership> members;
+	@OneToMany(mappedBy = "organization", fetch = FetchType.LAZY)
+	private Collection<OrganizationMembership> members;
 
 	@JsonBackReference
 	@OneToMany(mappedBy = "organization", fetch = FetchType.LAZY)

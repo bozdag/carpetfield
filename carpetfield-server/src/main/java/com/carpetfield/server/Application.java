@@ -36,13 +36,13 @@ public class Application {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Spring REST Sample with Swagger")
-                .description("Spring REST Sample with Swagger")
-                .termsOfServiceUrl("sample url")
-                .contact("sample contact")
-                .license("sample license")
-                .licenseUrl("sample license url")
-                .version("sample version")
+                .title("Carpetfield REST API")
+                .description("Carpetfield REST API Swagger Documentation")
+                .termsOfServiceUrl("/terms")
+                .contact("admin@carpetfield.com")
+                .license("GPL")
+                .licenseUrl("http://carpetfield.com/license")
+                .version("v1.0")
                 .build();
     }
 }
