@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
+
 /**
  * Created by alicana on 09/03/2017.
  */
@@ -26,11 +28,13 @@ public class OrganizationController {
 	@Autowired
 	private OrganizationService organizationService;
 
+
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Organization> list() {
 		return organizationService.findAll();
 	}
 
+	@ApiOperation(value = "getOrganization", nickname = "getOrganization")
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
 	public Organization getOrganization(@PathVariable Long id) {
 		return organizationService.findOne(id).orElseThrow(() -> new NoSuchElementException("Organization not found!"));

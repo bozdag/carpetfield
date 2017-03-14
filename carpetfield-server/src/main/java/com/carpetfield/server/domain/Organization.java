@@ -14,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * Created by selcukb on 08.03.2017.
  */
@@ -24,7 +26,9 @@ public class Organization implements Serializable {
 	@GeneratedValue
 	private Long id;
 
-	@Column(nullable = false) private String name;
+	@ApiModelProperty(notes = "The name of the organization", required = true)
+	@Column(nullable = false)
+	private String name;
 
 	@Column(nullable = false) private String description;
 
