@@ -1,15 +1,24 @@
 package com.carpetfield.server.domain;
 
-import com.carpetfield.server.domain.auth.User;
-import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.StringJoiner;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.carpetfield.server.domain.auth.User;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  * Created by selcukb on 08.03.2017.
@@ -36,12 +45,12 @@ public class Game implements Serializable{
     @Column(name = "time_of_start", nullable = false)
     private Date timeOfStart;
 
-    @JsonManagedReference
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="ORG_ID", nullable=false)
     private Organization organization;
 
-    @JsonManagedReference
+    @JsonBackReference
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name="games_users", joinColumns=@JoinColumn(name="game_id", referencedColumnName="id"), inverseJoinColumns=@JoinColumn(name="user_id", referencedColumnName="id"))
     private Collection<User> userCollection;
