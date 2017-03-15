@@ -1,9 +1,18 @@
 package com.carpetfield.server.domain;
 
-import javax.jws.Oneway;
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import com.carpetfield.server.domain.auth.User;
 
 /**
@@ -19,6 +28,7 @@ public class Invitation implements Serializable {
     @Column(nullable = false)
     private String context;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "invitation_time", nullable = false)
     private Date timeOfInvitation;
 
@@ -38,12 +48,6 @@ public class Invitation implements Serializable {
         timeOfInvitation = new Date();
     }
 
-    public Invitation(String context, Game game, User user){
-        timeOfInvitation = new Date();
-        this.context = context;
-        this.game = game;
-        this.user = user;
-    }
 
     public Long getId() {
         return id;

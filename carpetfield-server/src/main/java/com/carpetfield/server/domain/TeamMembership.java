@@ -1,10 +1,19 @@
 package com.carpetfield.server.domain;
 
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import com.carpetfield.server.domain.auth.User;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import javax.persistence.*;
-import java.util.Date;
 
 /**
  * Created by selcukb on 10.03.2017.
@@ -36,15 +45,9 @@ public class TeamMembership
     @Column(name = "IS_CAPTAIN")
     private boolean captain;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name="START_DATE", updatable=false)
     private Date startDate;
-
-
-    public TeamMembership()
-    {
-
-    }
 
     public long getUserId()
     {

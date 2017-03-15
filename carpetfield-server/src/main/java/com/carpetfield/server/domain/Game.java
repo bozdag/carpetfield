@@ -1,7 +1,6 @@
 package com.carpetfield.server.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.StringJoiner;
@@ -16,6 +15,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.carpetfield.server.domain.auth.User;
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -39,9 +40,11 @@ public class Game implements Serializable{
     @Column(nullable = false)
     private String address;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "time_of_creation", nullable = false)
     private Date timeOfCreation;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "time_of_start", nullable = false)
     private Date timeOfStart;
 
@@ -61,41 +64,6 @@ public class Game implements Serializable{
     @JsonBackReference
     @OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
     private Collection<Team> gameTeams;
-
-    public Game() {
-        userCollection = new ArrayList<>();
-        timeOfCreation = new Date();
-    }
-
-    public Game(String gameName) {
-        name = gameName;
-        userCollection = new ArrayList<>();
-        timeOfCreation = new Date();
-    }
-
-    public Game(String gameName, String gameDescription) {
-        name = gameName;
-        description = gameDescription;
-        userCollection = new ArrayList<>();
-        timeOfCreation = new Date();
-    }
-
-    public Game(String gameName, String gameDescription, String gameAddress) {
-        name = gameName;
-        description = gameDescription;
-        address = gameAddress;
-        userCollection = new ArrayList<>();
-        timeOfCreation = new Date();
-    }
-
-    public Game(String gameName, String gameDescription, String gameAddress, Date gameTimeOfStart) {
-        name = gameName;
-        description = gameDescription;
-        address = gameAddress;
-        timeOfStart = gameTimeOfStart;
-        userCollection = new ArrayList<>();
-        timeOfCreation = new Date();
-    }
 
     public Long getId() {
         return id;

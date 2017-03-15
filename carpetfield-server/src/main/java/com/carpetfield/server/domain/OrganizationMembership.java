@@ -46,12 +46,9 @@ public class OrganizationMembership {
 	@Column(name = "IS_OWNER")
 	private boolean owner;
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="START_DATE", updatable=false)
 	private Date startDate;
-
-	public OrganizationMembership()
-	{}
 
 	public Organization getOrganization() {
 		return organization;

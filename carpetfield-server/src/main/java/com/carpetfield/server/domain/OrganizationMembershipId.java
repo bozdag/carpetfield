@@ -10,9 +10,6 @@ public class OrganizationMembershipId implements Serializable {
 	private Long userId;
 	private Long organizationId;
 
-	public OrganizationMembershipId() {
-	}
-
 	public OrganizationMembershipId(Long userId, Long organizationId) {
 		this.userId = userId;
 		this.organizationId = organizationId;
