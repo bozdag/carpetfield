@@ -6,6 +6,7 @@ import java.util.NoSuchElementException;
 
 import com.carpetfield.server.domain.Organization;
 import com.carpetfield.server.domain.Game;
+import com.carpetfield.server.domain.OrganizationMembership;
 import com.carpetfield.server.domain.Team;
 import com.carpetfield.server.domain.auth.User;
 import com.carpetfield.server.service.OrganizationService;
@@ -28,7 +29,6 @@ public class OrganizationController {
 	@Autowired
 	private OrganizationService organizationService;
 
-
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Organization> list() {
 		return organizationService.findAll();
@@ -47,82 +47,41 @@ public class OrganizationController {
 
 	@RequestMapping(value = "{id}/games", method = RequestMethod.GET)
 	public Collection<Game> getOrganizationGames(@PathVariable Long id) {
-		Organization org = organizationService.findOne(id).orElseThrow(() -> new NoSuchElementException("Organization not found!"));
-		return org.getOrganizationGames();
-	}
-
-	private Game findGame(Collection<Game> orgGames, Long game_id)
-	{
-		for(Game g:orgGames){
-			if(g.getId() == game_id){
-				return g;
-			}
-		}
-
-		throw new NoSuchElementException("Organization game not found!");
+        return organizationService.findGamesOfOrganization(id);
 	}
 
 	@RequestMapping(value = "{id}/games/{game_id}", method = RequestMethod.GET)
 	public Game getOrganizationGameById(@PathVariable Long id, @PathVariable Long game_id) {
-		Organization org = organizationService.findOne(id).orElseThrow(() -> new NoSuchElementException("Organization not found!"));
-		return this.findGame(org.getOrganizationGames(), game_id);
+        return organizationService.findGameOfOrganizationByGameId(id,game_id);
 	}
 
 	@RequestMapping(value = "{id}/games/{game_id}/players", method = RequestMethod.GET)
 	public Collection<User> getOrganizationGamePlayersByGameId(@PathVariable Long id, @PathVariable Long game_id) {
-		Organization org = organizationService.findOne(id).orElseThrow(() -> new NoSuchElementException("Organization not found!"));
-		Game game = this.findGame(org.getOrganizationGames(), game_id);
-		return game.getUserCollection();
-	}
-
-	private User findUser(Collection<User> gameUsers, Long user_id)
-	{
-		for(User u:gameUsers){
-			if(u.getId() == user_id){
-				return u;
-			}
-		}
-
-		throw new NoSuchElementException("Organization game player not found!");
+		return organizationService.findPlayersOfOrganizationGameByGameId(id,game_id);
 	}
 
 	@RequestMapping(value = "{id}/games/{game_id}/players/{player_id}", method = RequestMethod.GET)
 	public User getOrganizationGamePlayerByPlayerId(@PathVariable Long id, @PathVariable Long game_id, @PathVariable Long player_id) {
-		Organization org = organizationService.findOne(id).orElseThrow(() -> new NoSuchElementException("Organization not found!"));
-		Game game = this.findGame(org.getOrganizationGames(), game_id);
-		return this.findUser(game.getUserCollection(), player_id);
+		return organizationService.findPlayerOfOrganizationGameByPlayerId(id,game_id,player_id);
 	}
 
 	@RequestMapping(value = "{id}/games/{game_id}/teams", method = RequestMethod.GET)
 	public Collection<Team> getOrganizationGameTeamsByGameId(@PathVariable Long id, @PathVariable Long game_id) {
-		Organization org = organizationService.findOne(id).orElseThrow(() -> new NoSuchElementException("Organization not found!"));
-		Game game = this.findGame(org.getOrganizationGames(), game_id);
-		return game.getGameTeams();
-	}
-
-	private Team findTeam(Collection<Team> gameTeams, Long team_id)
-	{
-		for(Team t:gameTeams){
-			if(t.getId() == team_id){
-				return t;
-			}
-		}
-
-		throw new NoSuchElementException("Organization game team not found!");
+		return organizationService.findTeamsOfOrganizationGameByGameId(id, game_id);
 	}
 
 	@RequestMapping(value = "{id}/games/{game_id}/teams/{team_id}", method = RequestMethod.GET)
 	public Team getOrganizationGameTeamByTeamId(@PathVariable Long id, @PathVariable Long game_id, @PathVariable Long team_id) {
-		Organization org = organizationService.findOne(id).orElseThrow(() -> new NoSuchElementException("Organization not found!"));
-		Game game = this.findGame(org.getOrganizationGames(), game_id);
-		return this.findTeam(game.getGameTeams(), team_id);
+		return organizationService.findTeamOfOrganizationGameByTeamId(id,game_id,team_id);
 	}
 
 	@RequestMapping(value = "{id}/games/{game_id}/teams/{team_id}/players", method = RequestMethod.GET)
 	public Collection<User> getOrganizationGameTeamPlayersByTeamId(@PathVariable Long id, @PathVariable Long game_id, @PathVariable Long team_id) {
-		Organization org = organizationService.findOne(id).orElseThrow(() -> new NoSuchElementException("Organization not found!"));
-		Game game = this.findGame(org.getOrganizationGames(), game_id);
-		Team team = this.findTeam(game.getGameTeams(), team_id);
-		return team.getUserCollection();
+		return organizationService.findUsersOfOrganizationGameTeamByTeamId(id,game_id,team_id);
+	}
+
+	@RequestMapping(value = "{id}/users", method = RequestMethod.GET)
+	public Collection<OrganizationMembership> getOrganizationUsersByOrgId(@PathVariable Long id) {
+		return organizationService.findUsersOfOrganizationByOrgId(id);
 	}
 }
