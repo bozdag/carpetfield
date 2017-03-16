@@ -11,7 +11,6 @@ import java.util.Optional;
 public interface InvitationService
 {
     Optional<Invitation> getInvitationById(long id);
-    Collection<Invitation> getInvitationsByGameId(long gameId);
     Collection<Invitation> getAllInvitations();
     Invitation createOrUpdate(Invitation invitation);
     void deleteInvitationById(long id);

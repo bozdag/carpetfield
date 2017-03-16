@@ -25,13 +25,6 @@ public class InvitationServiceImpl implements InvitationService{
     }
 
     @Override
-    public Collection<Invitation> getInvitationsByGameId(long gameId) {
-        //jpa dsl query konusuna bakılacak
-        //return invitationRepository.findInvitationByGameId(orgId);
-        return null;
-    }
-
-    @Override
     public Collection<Invitation> getAllInvitations() {
         return invitationRepository.findAll();
     }

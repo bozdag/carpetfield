@@ -4,7 +4,9 @@ import java.util.Collection;
 import java.util.Optional;
 
 import com.carpetfield.server.domain.Game;
+import com.carpetfield.server.domain.Invitation;
 import com.carpetfield.server.repo.GameRepository;
+import com.carpetfield.server.repo.InvitationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,9 @@ public class GameServiceImpl implements GameService
     @Autowired
     private GameRepository gameRepository;
 
+    @Autowired
+    private InvitationRepository invitationRepository;
+
     @Override
     public Optional<Game> getGameById(long id)
     {
@@ -25,11 +30,9 @@ public class GameServiceImpl implements GameService
     }
 
     @Override
-    public Collection<Game> getGamesByOrganizationId(long orgId)
+    public Collection<Invitation> getInvitationsByGameId(long gameId)
     {
-        //jpa dsl query konusuna bakılacak
-        //return gameRepository.findGamesByOrganizationId(orgId);
-        return null;
+        return invitationRepository.findByGameId(gameId);
     }
 
     @Override

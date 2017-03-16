@@ -1,6 +1,8 @@
 package com.carpetfield.server.service;
 
 import com.carpetfield.server.domain.Game;
+import com.carpetfield.server.domain.Invitation;
+
 import java.util.Collection;
 import java.util.Optional;
 
@@ -10,7 +12,7 @@ import java.util.Optional;
 public interface GameService
 {
     Optional<Game> getGameById(long id);
-    Collection<Game> getGamesByOrganizationId(long orgId);
+    Collection<Invitation> getInvitationsByGameId(long gameId);
     Collection<Game> getAllGames();
     Game createOrUpdate(Game game);
     void deleteGameById(long id);

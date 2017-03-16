@@ -6,6 +6,7 @@ import java.util.NoSuchElementException;
 import javax.validation.Valid;
 
 import com.carpetfield.server.domain.Game;
+import com.carpetfield.server.domain.Invitation;
 import com.carpetfield.server.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -55,4 +56,10 @@ public class GameController {
 		return gameService.createOrUpdate(gameToUpdate);
 	}
 
+	/* GET /games/1/invitations */
+	@RequestMapping(value = "{id}/invitations", method = RequestMethod.GET)
+	public Collection<Invitation> getGameInvitations(@PathVariable Long id)
+	{
+		return gameService.getInvitationsByGameId(id);
+	}
 }
