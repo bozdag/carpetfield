@@ -1,10 +1,17 @@
 package com.carpetfield.server.service.impl;
 
 import java.util.Collection;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import com.carpetfield.server.domain.Game;
+import com.carpetfield.server.domain.Invitation;
+import com.carpetfield.server.domain.Organization;
+import com.carpetfield.server.domain.OrganizationMembership;
 import com.carpetfield.server.domain.auth.User;
+import com.carpetfield.server.repo.GameRepository;
 import com.carpetfield.server.repo.UserRepository;
+import com.carpetfield.server.repo.InvitationRepository;
 import com.carpetfield.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -18,6 +25,9 @@ public class UserServiceImpl implements UserService
 {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private InvitationRepository invitationRepository;
 
     @Override
     public Optional<User> getUserById(long id)
@@ -47,6 +57,33 @@ public class UserServiceImpl implements UserService
     public void deleteUserById(long id)
     {
         userRepository.delete(id);
+    }
+
+    @Override
+    public Collection<OrganizationMembership> findOrganizationsOfUser(long usrId){
+        User user = userRepository.findOne(usrId);
+        if(user != null){
+            return user.getMemberships();
+        }
+        else{
+            throw new NoSuchElementException("User not found!");
+        }
+    }
+
+    @Override
+    public Collection<Game> findGamesOfUser(long usrId){
+        User user = userRepository.findOne(usrId);
+        if(user != null){
+            return user.getGameCollection();
+        }
+        else{
+            throw new NoSuchElementException("User not found!");
+        }
+    }
+
+    @Override
+    public Collection<Invitation> findInvitationsOfUser(long usrId){
+        return invitationRepository.findByUserId(usrId);
     }
 
 }

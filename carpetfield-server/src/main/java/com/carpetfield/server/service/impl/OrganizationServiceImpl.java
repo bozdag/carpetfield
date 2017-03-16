@@ -24,8 +24,6 @@ public class OrganizationServiceImpl implements OrganizationService {
 
 	@Autowired
 	private OrganizationRepository organizationRepository;
-	@Autowired
-	private GameRepository gameRepository;
 
 	@Override
 	public List<Organization> findAll(){

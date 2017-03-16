@@ -5,12 +5,21 @@ import java.util.Collection;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+<<<<<<< HEAD
 import javax.validation.Valid;
 
 import com.carpetfield.server.domain.Organization;
 import com.carpetfield.server.domain.OrganizationMembership;
 import com.carpetfield.server.domain.auth.User;
 import com.carpetfield.server.dto.UserOrganizationDTO;
+=======
+import com.carpetfield.server.domain.OrganizationMembership;
+import com.carpetfield.server.domain.auth.User;
+import com.carpetfield.server.domain.Organization;
+import com.carpetfield.server.domain.Game;
+import com.carpetfield.server.domain.Invitation;
+import com.carpetfield.server.repo.UserRepository;
+>>>>>>> 8a7514555692e166b14c072fd816b87cc1012133
 import com.carpetfield.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -67,6 +76,21 @@ public class UserController {
 		return userService.createOrUpdate( update );
 	}
 
+
+	/* GET /users/id/games */
+	@RequestMapping(value = "{id}/games", method = RequestMethod.GET)
+	public Collection<Game> getUserGames(@PathVariable Long id)
+	{
+		return userService.findGamesOfUser(id);
+	}
+
+	/* GET /users/id/invitations */
+	@RequestMapping(value = "{id}/invitations", method = RequestMethod.GET)
+	public Collection<Invitation> getUserInvitations(@PathVariable Long id)
+	{
+		return userService.findInvitationsOfUser(id);
+	}
+
 	@RequestMapping(value = "{id}/organizations", method = RequestMethod.GET)
 	public List<UserOrganizationDTO> getOrganizations(@PathVariable Long id){
 
@@ -90,6 +114,5 @@ public class UserController {
 		return result;
 
 	}
-
 
 }
