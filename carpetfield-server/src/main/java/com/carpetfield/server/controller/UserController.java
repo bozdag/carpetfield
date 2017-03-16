@@ -1,20 +1,32 @@
 package com.carpetfield.server.controller;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+<<<<<<< HEAD
+import javax.validation.Valid;
+
+import com.carpetfield.server.domain.Organization;
+import com.carpetfield.server.domain.OrganizationMembership;
+import com.carpetfield.server.domain.auth.User;
+import com.carpetfield.server.dto.UserOrganizationDTO;
+=======
 import com.carpetfield.server.domain.OrganizationMembership;
 import com.carpetfield.server.domain.auth.User;
 import com.carpetfield.server.domain.Organization;
 import com.carpetfield.server.domain.Game;
 import com.carpetfield.server.domain.Invitation;
 import com.carpetfield.server.repo.UserRepository;
+>>>>>>> 8a7514555692e166b14c072fd816b87cc1012133
 import com.carpetfield.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by alicana on 09/03/2017.
@@ -64,12 +76,6 @@ public class UserController {
 		return userService.createOrUpdate( update );
 	}
 
-	/* GET /users/id/organizations */
-	@RequestMapping(value = "{id}/organizations", method = RequestMethod.GET)
-	public Collection<OrganizationMembership> getUserOrganizations(@PathVariable Long id)
-	{
-		return userService.findOrganizationsOfUser(id);
-	}
 
 	/* GET /users/id/games */
 	@RequestMapping(value = "{id}/games", method = RequestMethod.GET)
@@ -84,4 +90,29 @@ public class UserController {
 	{
 		return userService.findInvitationsOfUser(id);
 	}
+
+	@RequestMapping(value = "{id}/organizations", method = RequestMethod.GET)
+	public List<UserOrganizationDTO> getOrganizations(@PathVariable Long id){
+
+
+		User user = getUser(id);
+		Collection<OrganizationMembership> memberships = user.getMemberships();
+
+		List<UserOrganizationDTO> result = new ArrayList<>();
+		for(OrganizationMembership om : memberships){
+			Organization org = om.getOrganization();
+
+			UserOrganizationDTO tmpUserOrgDTO = new UserOrganizationDTO();
+			tmpUserOrgDTO.setName(org.getName());
+			tmpUserOrgDTO.setOrganizationId(org.getId());
+			tmpUserOrgDTO.setOwner(om.isOwner());
+
+			result.add(tmpUserOrgDTO);
+
+		}
+
+		return result;
+
+	}
+
 }
