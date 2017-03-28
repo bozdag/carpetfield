@@ -3,6 +3,7 @@ package com.carpetfield.server.controller;
 import com.carpetfield.server.domain.Invitation;
 import com.carpetfield.server.service.InvitationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -14,6 +15,7 @@ import java.util.NoSuchElementException;
  */
 @RestController
 @RequestMapping("/invitations")
+@EnableAutoConfiguration
 public class InvitationController {
 
     @Autowired

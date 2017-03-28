@@ -9,6 +9,7 @@ import com.carpetfield.server.domain.Game;
 import com.carpetfield.server.domain.Invitation;
 import com.carpetfield.server.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/games")
+@EnableAutoConfiguration
 public class GameController {
 	@Autowired private GameService gameService;
 

@@ -7,6 +7,7 @@ import com.carpetfield.server.dto.LoginDTO;
 import com.carpetfield.server.dto.LoginResponse;
 import com.carpetfield.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/login")
+@EnableAutoConfiguration
 public class LoginController {
 
 	@Autowired
