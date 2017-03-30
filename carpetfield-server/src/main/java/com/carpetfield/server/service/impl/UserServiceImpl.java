@@ -1,20 +1,20 @@
 package com.carpetfield.server.service.impl;
 
+import com.carpetfield.server.repo.RoleRepository;
 import java.util.Collection;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import com.carpetfield.server.domain.Game;
 import com.carpetfield.server.domain.Invitation;
-import com.carpetfield.server.domain.Organization;
 import com.carpetfield.server.domain.OrganizationMembership;
-import com.carpetfield.server.domain.auth.User;
-import com.carpetfield.server.repo.GameRepository;
+import com.carpetfield.server.domain.User;
 import com.carpetfield.server.repo.UserRepository;
 import com.carpetfield.server.repo.InvitationRepository;
 import com.carpetfield.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -25,6 +25,12 @@ public class UserServiceImpl implements UserService
 {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     private InvitationRepository invitationRepository;

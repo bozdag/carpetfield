@@ -1,19 +1,21 @@
 package com.carpetfield.server.controller;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.NoSuchElementException;
-
-import javax.validation.Valid;
-
 import com.carpetfield.server.domain.Game;
 import com.carpetfield.server.domain.Invitation;
 import com.carpetfield.server.domain.Organization;
 import com.carpetfield.server.domain.OrganizationMembership;
-import com.carpetfield.server.domain.auth.User;
+import com.carpetfield.server.domain.Role;
+import com.carpetfield.server.domain.RoleEnum;
+import com.carpetfield.server.domain.User;
 import com.carpetfield.server.dto.UserOrganizationDTO;
 import com.carpetfield.server.service.UserService;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Set;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -59,9 +61,17 @@ public class UserController {
 	public User update(@PathVariable Long id, @RequestBody @Valid final User user) {
 		User update = userService.getUserById(id).orElseThrow(() -> new NoSuchElementException("User not found"));
 		// MARK: <Alternative> BeanUtils.copyProperties
-		update.setEmail(user.getEmail());
-		update.setPasswordHash(user.getPasswordHash());
-		update.setRole(user.getRole());
+
+
+		Role r = new Role();
+		r.setId(15l);
+		r.setRoleEnum(RoleEnum.ROLE_ADMIN);
+		Set<Role> roles = new HashSet<>();
+		roles.add(r);
+
+ 		update.setEmail(user.getEmail());
+		update.setPassword(user.getPassword());
+		update.setRoles(roles);
 		return userService.createOrUpdate(update);
 	}
 

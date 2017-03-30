@@ -2,7 +2,7 @@ package com.carpetfield.server.repo;
 
 import java.util.Optional;
 
-import com.carpetfield.server.domain.auth.User;
+import com.carpetfield.server.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

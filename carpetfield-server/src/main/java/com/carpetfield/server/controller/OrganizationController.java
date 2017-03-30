@@ -8,7 +8,7 @@ import com.carpetfield.server.domain.Organization;
 import com.carpetfield.server.domain.Game;
 import com.carpetfield.server.domain.OrganizationMembership;
 import com.carpetfield.server.domain.Team;
-import com.carpetfield.server.domain.auth.User;
+import com.carpetfield.server.domain.User;
 import com.carpetfield.server.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

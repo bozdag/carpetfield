@@ -1,8 +1,6 @@
 package com.carpetfield.server.repo;
 
-import com.carpetfield.server.domain.Game;
 import com.carpetfield.server.domain.Invitation;
-import com.carpetfield.server.domain.auth.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Collection;

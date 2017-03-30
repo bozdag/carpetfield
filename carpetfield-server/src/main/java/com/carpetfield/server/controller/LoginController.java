@@ -2,7 +2,7 @@ package com.carpetfield.server.controller;
 
 import java.util.NoSuchElementException;
 
-import com.carpetfield.server.domain.auth.User;
+import com.carpetfield.server.domain.User;
 import com.carpetfield.server.dto.LoginDTO;
 import com.carpetfield.server.dto.LoginResponse;
 import com.carpetfield.server.service.UserService;

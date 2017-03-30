@@ -6,7 +6,7 @@ import java.util.Optional;
 import com.carpetfield.server.domain.Game;
 import com.carpetfield.server.domain.Invitation;
 import com.carpetfield.server.domain.OrganizationMembership;
-import com.carpetfield.server.domain.auth.User;
+import com.carpetfield.server.domain.User;
 
 /**
  * Created by selcukb on 09.03.2017.

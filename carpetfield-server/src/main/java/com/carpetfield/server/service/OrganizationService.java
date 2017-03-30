@@ -8,7 +8,7 @@ import com.carpetfield.server.domain.Game;
 import com.carpetfield.server.domain.Organization;
 import com.carpetfield.server.domain.OrganizationMembership;
 import com.carpetfield.server.domain.Team;
-import com.carpetfield.server.domain.auth.User;
+import com.carpetfield.server.domain.User;
 
 /**
  * Created by alicana on 09/03/2017.

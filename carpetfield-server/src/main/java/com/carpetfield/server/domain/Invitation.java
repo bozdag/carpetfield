@@ -13,8 +13,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.carpetfield.server.domain.auth.User;
-
 /**
  * Created by selcukb on 08.03.2017.
  */
