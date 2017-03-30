@@ -14,6 +14,7 @@ import org.springframework.security.core.Authentication;
  * JWT service will deal with the creation and verification of our tokens
  */
 public class TokenAuthenticationService {
+
   static final long EXPIRATIONTIME = 864_000_000; // 10 days
   static final String SECRET = "ThisIsASecret";
   static final String TOKEN_PREFIX = "Bearer";

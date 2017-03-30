@@ -1,8 +1,8 @@
 package com.carpetfield.server.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.util.Collection;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,67 +13,67 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 /**
  * Created by selcukb on 08.03.2017.
  */
 @Entity
 public class Team implements Serializable {
 
-	@Id
-	@GeneratedValue
-	private Long id;
+  @Id
+  @GeneratedValue
+  private Long id;
 
-	@Column(nullable = false) private String name;
+  @Column(nullable = false)
+  private String name;
 
-	@Column(nullable = false) private String description;
+  @Column(nullable = false)
+  private String description;
 
-	@JsonBackReference
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "GAME_ID", nullable = false)
-	private Game game;
+  @JsonBackReference
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "GAME_ID", nullable = false)
+  private Game game;
 
-	@JsonBackReference
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "teams_users",
-			joinColumns = @JoinColumn(name = "team_id", referencedColumnName = "id"),
-			inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
-	private Collection<User> userCollection;
+  @JsonBackReference
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "teams_users",
+      joinColumns = @JoinColumn(name = "team_id", referencedColumnName = "id"),
+      inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
+  private Collection<User> userCollection;
 
-	public Long getId() {
-		return id;
-	}
+  public Long getId() {
+    return id;
+  }
 
-	public String getName() {
-		return name;
-	}
+  public String getName() {
+    return name;
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  public void setName(String name) {
+    this.name = name;
+  }
 
-	public String getDescription() {
-		return description;
-	}
+  public String getDescription() {
+    return description;
+  }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-	public Game getGame() {
-		return game;
-	}
+  public Game getGame() {
+    return game;
+  }
 
-	public void setGame(Game game) {
-		this.game = game;
-	}
+  public void setGame(Game game) {
+    this.game = game;
+  }
 
-	public Collection<User> getUserCollection() {
-		return userCollection;
-	}
+  public Collection<User> getUserCollection() {
+    return userCollection;
+  }
 
-	public void setUserCollection(Collection<User> userCollection) {
-		this.userCollection = userCollection;
-	}
+  public void setUserCollection(Collection<User> userCollection) {
+    this.userCollection = userCollection;
+  }
 }

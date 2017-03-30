@@ -1,9 +1,7 @@
 package com.carpetfield.server.repo;
 
-import java.util.Collection;
-import java.util.Optional;
-
 import com.carpetfield.server.domain.Organization;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -12,6 +10,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface OrganizationRepository extends JpaRepository<Organization, Long> {
 
-	Optional<Organization> findByNameIgnoreCase(String name);
+  Optional<Organization> findByNameIgnoreCase(String name);
 
 }

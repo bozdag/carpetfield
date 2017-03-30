@@ -1,14 +1,14 @@
+INSERT INTO role (role_enum) VALUES ('ROLE_ADMIN');
+INSERT INTO role (role_enum) VALUES ('ROLE_USER');
 
-INSERT INTO role (role_enum) values ('ROLE_ADMIN');
-INSERT INTO role (role_enum) values ('ROLE_USER');
+INSERT INTO user (email, password)
+VALUES ('john.doe@gmail.com', '$2a$10$1WXyY5JpComZpwpNV01yq.qJOrk0l3pn4DoMzo3JDF65tSvviSkVC');
+INSERT INTO user (email, password)
+VALUES ('john@wick.com', '$2a$10$1WXyY5JpComZpwpNV01yq.qJOrk0l3pn4DoMzo3JDF65tSvviSkVC');
 
-INSERT INTO user (email, password) VALUES ('john.doe@gmail.com', '$2a$10$1WXyY5JpComZpwpNV01yq.qJOrk0l3pn4DoMzo3JDF65tSvviSkVC');
-INSERT INTO user (email, password) VALUES ('john@wick.com', '$2a$10$1WXyY5JpComZpwpNV01yq.qJOrk0l3pn4DoMzo3JDF65tSvviSkVC');
-
-insert into user_role (user_id, role_id) VALUES (1,1);
-insert into user_role (user_id, role_id) VALUES (1,2);
-insert into user_role (user_id, role_id) VALUES (2,2);
-
+INSERT INTO user_role (user_id, role_id) VALUES (1, 1);
+INSERT INTO user_role (user_id, role_id) VALUES (1, 2);
+INSERT INTO user_role (user_id, role_id) VALUES (2, 2);
 
 --
 -- INSERT INTO organization (name, description) VALUES ('şentepe', 'ayhanın halısaha takımı');

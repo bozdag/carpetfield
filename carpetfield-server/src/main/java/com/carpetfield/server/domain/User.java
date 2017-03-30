@@ -20,105 +20,105 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "user")
-public class User
-{
-    @Id
-    @GeneratedValue
-    private Long id;
+public class User {
 
-    @Column(nullable = false, unique = true)
-    private String email;
+  @Id
+  @GeneratedValue
+  private Long id;
 
-    @Column(nullable = false)
-    private String password;
+  @Column(nullable = false, unique = true)
+  private String email;
 
-    @ManyToMany
-    @JoinTable(
-        name = "user_role",
-        joinColumns = @JoinColumn(name = "user_id"),
-        inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+  @Column(nullable = false)
+  private String password;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private Collection<OrganizationMembership> memberships= new ArrayList<>();
+  @ManyToMany
+  @JoinTable(
+      name = "user_role",
+      joinColumns = @JoinColumn(name = "user_id"),
+      inverseJoinColumns = @JoinColumn(name = "role_id"))
+  private Set<Role> roles;
 
-    @JsonBackReference
-    @ManyToMany(mappedBy = "userCollection", fetch = FetchType.LAZY)
-    private Collection<Game> gameCollection;
+  @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+  private Collection<OrganizationMembership> memberships = new ArrayList<>();
 
-    @JsonBackReference
-    @ManyToMany(mappedBy = "userCollection", fetch = FetchType.LAZY)
-    private Collection<Team> teamCollection;
+  @JsonBackReference
+  @ManyToMany(mappedBy = "userCollection", fetch = FetchType.LAZY)
+  private Collection<Game> gameCollection;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private Collection<Invitation> invitationCollection;
+  @JsonBackReference
+  @ManyToMany(mappedBy = "userCollection", fetch = FetchType.LAZY)
+  private Collection<Team> teamCollection;
+
+  @OneToMany(fetch = FetchType.LAZY)
+  private Collection<Invitation> invitationCollection;
 
 
-    public Long getId() {
-        return id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
+  public Set<Role> getRoles() {
+    return roles;
+  }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
+  public void setRoles(Set<Role> roles) {
+    this.roles = roles;
+  }
 
-    public Collection<OrganizationMembership> getMemberships() {
-        return memberships;
-    }
+  public Collection<OrganizationMembership> getMemberships() {
+    return memberships;
+  }
 
-    public void setMemberships(
-        Collection<OrganizationMembership> memberships) {
-        this.memberships = memberships;
-    }
+  public void setMemberships(
+      Collection<OrganizationMembership> memberships) {
+    this.memberships = memberships;
+  }
 
-    public Collection<Game> getGameCollection() {
-        return gameCollection;
-    }
+  public Collection<Game> getGameCollection() {
+    return gameCollection;
+  }
 
-    public void setGameCollection(
-        Collection<Game> gameCollection) {
-        this.gameCollection = gameCollection;
-    }
+  public void setGameCollection(
+      Collection<Game> gameCollection) {
+    this.gameCollection = gameCollection;
+  }
 
-    public Collection<Team> getTeamCollection() {
-        return teamCollection;
-    }
+  public Collection<Team> getTeamCollection() {
+    return teamCollection;
+  }
 
-    public void setTeamCollection(
-        Collection<Team> teamCollection) {
-        this.teamCollection = teamCollection;
-    }
+  public void setTeamCollection(
+      Collection<Team> teamCollection) {
+    this.teamCollection = teamCollection;
+  }
 
-    public Collection<Invitation> getInvitationCollection() {
-        return invitationCollection;
-    }
+  public Collection<Invitation> getInvitationCollection() {
+    return invitationCollection;
+  }
 
-    public void setInvitationCollection(
-        Collection<Invitation> invitationCollection) {
-        this.invitationCollection = invitationCollection;
-    }
+  public void setInvitationCollection(
+      Collection<Invitation> invitationCollection) {
+    this.invitationCollection = invitationCollection;
+  }
 }
