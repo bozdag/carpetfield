@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 /**
  * Created by alicana on 28/03/2017.
@@ -32,6 +33,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.csrf().disable().authorizeRequests()
+
+        .antMatchers("/v2/api-docs", "/configuration/ui/**", "/swagger-resources/**",
+            "/configuration/security/**", "/swagger-ui.html/**", "/webjars/**").permitAll()
         // everyone can access root
         .antMatchers("/").permitAll()
         // login route is only publicly available for post requests
@@ -46,16 +50,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .addFilterBefore(new JWTAuthenticationFilter(),
             UsernamePasswordAuthenticationFilter.class);
   }
-
-//  @Override
-//  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//    // Create a default account
-//    auth.inMemoryAuthentication()
-//        .withUser("admin")
-//        .password("password")
-//        .roles("ADMIN");
-//  }
-
 
   @Autowired
   public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
